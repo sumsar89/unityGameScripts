@@ -58,6 +58,9 @@ public class moveBehaviourGregTarget : MonoBehaviour {
 				transform.position = new Vector3 (2.15f, 2.3f, 11.9f);
 			}
 			else if(targetHealth < 1){
+
+				//Sends message to fungus to bring up exit script
+				Fungus.Flowchart.BroadcastFungusMessage ("EndTutorial");
 				//subtract 1 target from target counter  
 				arenaScript.removeTarget ();
 				//finally destroy this target object to free up memory 
@@ -67,8 +70,6 @@ public class moveBehaviourGregTarget : MonoBehaviour {
 			}
 		}
 	}
-
-
-
+		
 }
 
