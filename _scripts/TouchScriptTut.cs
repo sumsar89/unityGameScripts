@@ -1,16 +1,16 @@
-﻿//TouchScript.cs
-//@author: Mario Tommadich
-//Date 20.02.2017
+﻿//TouchScriptTut.cs
+//@author: GregDunne
+//Date 15.03.2017
 
 using UnityEngine;
 using System.Collections;
 
-public class TouchScript : MonoBehaviour {
+public class TouchScriptTut : MonoBehaviour {
 	Vector3 mousePos;
 	public GameObject paddle;
 	GameObject ball;
 	MoveBallnoPhysics ballMover;
-	public bool canMove = true;
+	public bool canMove = false;
 
 	void Start(){
 		ball = GameObject.FindGameObjectWithTag ("ball");
@@ -22,7 +22,7 @@ public class TouchScript : MonoBehaviour {
 		if (canMove) {
 
 
-		
+
 			if (ballMover.ballStopped && Input.GetMouseButtonUp (0)) {
 				ballMover.ballStopped = false;
 			}
