@@ -7,8 +7,6 @@ using System.Collections;
 
 public class moveBehaviourGregTarget2 : MonoBehaviour {
 
-
-
 	public int targetHealth;
 	private GameObject arena;
 	Arena arenaScript;
@@ -18,13 +16,14 @@ public class moveBehaviourGregTarget2 : MonoBehaviour {
 	public Vector3 rotate;
 
 	public float speed;
-	public GameObject rightWall;
-	public GameObject leftWall;
 	public bool reverseMove = false;
 
 	private float startTime;
 	private float journeyLength;
 
+	//left and right boundaries for moving target.
+	Vector3 leftBoundary;
+	Vector3 rightBoundary;
 
 	// Use this for initialization of all variables which need to have values at game start
 	void Start () {
@@ -34,9 +33,14 @@ public class moveBehaviourGregTarget2 : MonoBehaviour {
 		arena = GameObject.FindGameObjectWithTag("arena");
 		arenaScript = arena.GetComponent<Arena> ();
 
+		//left and right boundary positions.
+		leftBoundary = new Vector3 (-2.15f,transform.position.y,transform.position.z);
+		rightBoundary = new Vector3 (2.15f,transform.position.y,transform.position.z);
+
 		//Moving the target
 		startTime = Time.time;
-		journeyLength = Vector3.Distance (leftWall.transform.position, rightWall.transform.position);
+		journeyLength = Vector3.Distance (leftBoundary, rightBoundary);
+
 	}
 
 	// Update is called once per frame
@@ -47,13 +51,13 @@ public class moveBehaviourGregTarget2 : MonoBehaviour {
 
 		//go from right to left
 		if (reverseMove) {
-			transform.position = Vector3.Lerp (rightWall.transform.position, leftWall.transform.position, fracJourney);
+			transform.position = Vector3.Lerp (rightBoundary, leftBoundary, fracJourney);
 		}else{
 			//go from left to right
-			transform.position = Vector3.Lerp (leftWall.transform.position, rightWall.transform.position, fracJourney);
-	}
+			transform.position = Vector3.Lerp (leftBoundary, rightBoundary, fracJourney);
+		}
 		//bounce
-		if ((Vector3.Distance(transform.position, rightWall.transform.position)==0.0f || Vector3.Distance(transform.position, leftWall.transform.position)==0.0f)){
+		if ((Vector3.Distance(transform.position, rightBoundary)==0.0f || Vector3.Distance(transform.position, leftBoundary)==0.0f)){
 			if (reverseMove){
 				reverseMove=false;
 			}
@@ -76,7 +80,7 @@ public class moveBehaviourGregTarget2 : MonoBehaviour {
 			targetHealth--;
 
 			//if target health is 0:
-				if(targetHealth < 1){
+			if(targetHealth < 1){
 				//subtract 1 target from target counter  
 				arenaScript.removeTarget ();
 				//finally destroy this target object to free up memory 
@@ -84,9 +88,6 @@ public class moveBehaviourGregTarget2 : MonoBehaviour {
 			}
 		}
 	}
-
-
-
 
 }
 
