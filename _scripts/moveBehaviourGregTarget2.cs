@@ -2,6 +2,8 @@
 //@author: Greg Dunne
 //Date 16.03.2017
 
+//Lerp code sourced from https://docs.unity3d.com/410/Documentation/ScriptReference/Vector3.Lerp.html
+
 using UnityEngine;
 using System.Collections;
 
@@ -45,6 +47,7 @@ public class moveBehaviourGregTarget2 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 
 		float distCovered = (Time.time - startTime) * speed;
 		float fracJourney = distCovered / journeyLength;
