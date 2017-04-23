@@ -10,6 +10,8 @@ public class TouchScript : MonoBehaviour {
 	public GameObject paddle;
 	GameObject ball;
 	MoveBallnoPhysics ballMover;
+	
+	//added by greg as required for tutorial stage.
 	public bool canMove = true;
 
 	void Start(){
@@ -19,6 +21,7 @@ public class TouchScript : MonoBehaviour {
 
 	void Update(){
 
+		//added by greg as required for tutorial stage.
 		if (canMove) {
 
 
@@ -41,10 +44,12 @@ public class TouchScript : MonoBehaviour {
 
 	}
 
+	//added by greg as required for tutorial stage.
 	public void setMovable(){
 		canMove = true;
 	}
 
+	//added by greg as required for tutorial stage.
 	public void setNotMovable(){
 		canMove = false;
 	}
